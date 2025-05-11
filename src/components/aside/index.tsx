@@ -2,9 +2,14 @@ import React from "react";
 import { navItems } from "../../db";
 import { NavLink } from "react-router-dom";
 import "./_style.scss";
+import { Button } from "antd";
 const Aside: React.FC = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    window.location.href = '/auth'; 
+  };
   return (
-    <aside className="p-4 min-w-[254px] min-h-screen">
+    <aside className="p-4 min-w-[254px] min-h-screen flex flex-col justify-between">
       <ul>
         {navItems.map((item, i) => {
           const Icon = item.icons;
@@ -22,6 +27,7 @@ const Aside: React.FC = () => {
           );
         })}
       </ul>
+      <Button   onClick={handleLogout} className="absolute top-[-90px] ">Log Out</Button>
     </aside>
   );
 };
